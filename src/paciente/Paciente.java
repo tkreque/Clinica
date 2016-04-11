@@ -12,27 +12,19 @@ import java.time.LocalDate;
  * @author reque
  */
 public class Paciente {
-    private String RG;
     private String nome;
+    private String RG;
     private LocalDate dataNascimento;
 
     public Paciente() {
     }
 
-    public Paciente(String RG, String nome, LocalDate dataNascimento) {
-        this.RG = RG;
+    public Paciente(String nome, String RG, LocalDate dataNascimento) {
         this.nome = nome;
+        this.RG = RG;
         this.dataNascimento = dataNascimento;
     }
     
-    public String getRG() {
-        return RG;
-    }
-
-    public void setRG(String RG) {
-        this.RG = RG;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -41,6 +33,14 @@ public class Paciente {
         this.nome = nome;
     }
 
+    public String getRG() {
+        return RG;
+    }
+
+    public void setRG(String RG) {
+        this.RG = RG;
+    }
+    
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
@@ -51,7 +51,9 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return "Paciente{" + "RG=" + RG + ", nome=" + nome + ", dataNascimento=" + dataNascimento + '}';
+        return "Paciente{" + "nome=" + nome + ", RG=" + RG + ", dataNascimento=" + dataNascimento + '}';
     }
+
+    
 
 }

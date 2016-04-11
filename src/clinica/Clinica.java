@@ -6,8 +6,10 @@
 package clinica;
 
 import csv.CSVFile;
+import csv.CSVParser;
 import java.util.ArrayList;
 import paciente.Paciente;
+import paciente.PacienteParser;
 
 /**
  *
@@ -20,20 +22,25 @@ public class Clinica {
      */
     public static void main(String[] args) {
         String file = "/home/reque/Codes/Clinica/Clinica/Files/pacientes.csv";
-        CSVFile csv = new CSVFile();
+        CSVFile<Paciente> csv = new CSVFile<>();
         ArrayList<Paciente> pacientes = null;
+        PacienteParser pp = new PacienteParser();
         
         try{
             csv.open(file);
+            csv.setParser(pp);
             pacientes = csv.readObject();
             csv.close();
         }catch(Exception ex){
             System.out.println("Erro: "+ex);
         }
         
-        for(int i=0; i<pacientes.size();i++){
-            System.out.println(pacientes.get(i));
+        if(pacientes!=null){
+            for(int i=0; i<pacientes.size();i++){
+                System.out.println(pacientes.get(i));
+            }    
         }
+        
     }
     
 }

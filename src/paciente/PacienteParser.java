@@ -5,17 +5,27 @@
  */
 package paciente;
 
+import csv.CSVParser;
 import java.time.LocalDate;
 
 /**
  *
  * @author reque
  */
-public class PacienteParser {
+public class PacienteParser implements CSVParser{
     private Paciente p;
-
-    public Paciente retornaPaciente(String RG, String nome, LocalDate dataNascimento) {
-        p = new Paciente(RG, nome, dataNascimento);
+    
+    @Override
+    public Paciente parseObject(String dados) {
+        String[] array = dados.split(";");
+        p = new Paciente(array[0], array[1], LocalDate.parse(array[2]));
         return p;
     }
+    
+    public Paciente getDados(String dados) {
+        String[] array = dados.split(";");
+        p = new Paciente(array[0], array[1], LocalDate.parse(array[2]));
+        return p;
+    }
+    
 }

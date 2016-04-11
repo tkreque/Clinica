@@ -17,6 +17,7 @@ import paciente.PacienteParser;
  */
 public class CSVFile<T> implements CSVParser<T>{
     private Scanner in = new Scanner(System.in);
+    private CSVParser<T> objectParser;
     private ArrayList<T> array = new ArrayList<>();
        
     public void open(String filename){
@@ -47,12 +48,15 @@ public class CSVFile<T> implements CSVParser<T>{
             throw new RuntimeException(ex);
         }
         return array;
-    }        
-    
-    @Override
-    public T parseObject(String dado){
-        String[] array = dado.split(";");
-        PacienteParser p = new PacienteParser();
-        return (T) p.retornaPaciente(array[1],array[0],LocalDate.parse(array[2]));      
     }
+    
+    public void setParser(CSVParser parser){
+       objectParser = parser;
+    }
+
+    @Override
+    public T parseObject(String dados) {
+       return objectParser.parseObject(dados);
+    }
+  
 }
