@@ -5,10 +5,13 @@
  */
 package csv;
 
+
 /**
  *
  * @author reque
  */
-public interface CSVParser {
+public interface CSVParser<T>{
+    
+    public T parseObject(String dados);
     
 }

@@ -5,10 +5,17 @@
  */
 package paciente;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author reque
  */
 public class PacienteParser {
-    
+    private Paciente p;
+
+    public Paciente retornaPaciente(String RG, String nome, LocalDate dataNascimento) {
+        p = new Paciente(RG, nome, dataNascimento);
+        return p;
+    }
 }
