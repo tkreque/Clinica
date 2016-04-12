@@ -9,13 +9,12 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-import paciente.PacienteParser;
 
 /**
  *
  * @author reque
  */
-public class CSVFile<T> implements CSVParser<T>{
+public class CSVFile<T>{
     private Scanner in = new Scanner(System.in);
     private CSVParser<T> objectParser;
     private ArrayList<T> array = new ArrayList<>();
@@ -42,7 +41,7 @@ public class CSVFile<T> implements CSVParser<T>{
             String header = in.nextLine();
             while(in.hasNextLine()){
                 String linha = in.nextLine();
-                array.add(parseObject(linha));
+                array.add(objectParser.parseObject(linha));
             }
         }catch(Exception ex){
             throw new RuntimeException(ex);
@@ -54,9 +53,4 @@ public class CSVFile<T> implements CSVParser<T>{
        objectParser = parser;
     }
 
-    @Override
-    public T parseObject(String dados) {
-       return objectParser.parseObject(dados);
-    }
-  
 }

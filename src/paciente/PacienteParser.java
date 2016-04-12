@@ -13,12 +13,11 @@ import java.time.LocalDate;
  * @author reque
  */
 public class PacienteParser implements CSVParser{
-    private Paciente p;
     
     @Override
     public Paciente parseObject(String dados) {
         String[] array = dados.split(";");
-        p = new Paciente(array[0], array[1], LocalDate.parse(array[2]));
+        Paciente p = new Paciente(array[0], array[1], LocalDate.parse(array[2]));
         return p;
     }
     

@@ -36,9 +36,11 @@ public class Clinica {
         }
         
         if(pacientes!=null){
+            System.out.println("-----> INICIO DA LISTA <-----");
             for(int i=0; i<pacientes.size();i++){
                 System.out.println(pacientes.get(i));
-            }    
+            }
+            System.out.println("<----- FIM DA LISTA ----->");
         }
         
     }
