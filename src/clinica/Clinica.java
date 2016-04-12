@@ -6,7 +6,6 @@
 package clinica;
 
 import csv.CSVFile;
-import csv.CSVParser;
 import java.util.ArrayList;
 import paciente.Paciente;
 import paciente.PacienteParser;
