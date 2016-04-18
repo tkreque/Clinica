@@ -2,6 +2,7 @@ package vetor;
 
 import csv.CSVFile;
 import dao.PacienteDAO;
+import datastructures.Vetor;
 import paciente.Paciente;
 
 public class PacienteDAOVetor implements PacienteDAO {

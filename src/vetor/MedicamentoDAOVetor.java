@@ -3,12 +3,13 @@ package vetor;
 import medicamento.Medicamento;
 import csv.CSVFile;
 import dao.MedicamentoDAO;
+import datastructures.Vetor;
 
 public class MedicamentoDAOVetor implements MedicamentoDAO{
 	private Vetor<Medicamento> medicamentos;
 	
 	@Override
-	public Medicamento getMedicamento(int codigo) {
+	public Medicamento getMedicamento(String codigo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -20,7 +21,7 @@ public class MedicamentoDAOVetor implements MedicamentoDAO{
 	}
 
 	@Override
-	public void removeMedicamento(int codigo) {
+	public void removeMedicamento(String codigo) {
 		// TODO Auto-generated method stub
 		
 	}
