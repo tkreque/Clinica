@@ -40,7 +40,7 @@ public class PacienteDAOListaEncadeada implements PacienteDAO {
         if(pacientes != null){
             Iterador<Paciente> it = pacientes.iterator();
             for(Paciente p: pacientes){
-               if(p.getRG().equals(rg)){
+               if(p.getRG().toUpperCase().equals(rg)){
                    it.remove();
                }
                it.next();
@@ -65,7 +65,6 @@ public class PacienteDAOListaEncadeada implements PacienteDAO {
             for(int i=0;i<lista.size();i++){
                 pacientes.append(lista.get(i));
             }
-
             arquivo.close();
         }catch(Exception ex){
             throw new RuntimeException("Não foi possível carregar os dados: "+ex);
@@ -80,6 +79,32 @@ public class PacienteDAOListaEncadeada implements PacienteDAO {
         }
         s = s+"\n---> FIM DA LISTA <---";
         return s;
+    }
+    
+    public int[] ordenacao(){
+        int[] numeros = new int[7];
+
+        numeros[0] = 9;
+        numeros[1] = 5;
+        numeros[2] = 4;
+        numeros[3] = 2;
+        numeros[4] = 1;
+        numeros[5] = 8;
+        numeros[6] = 3;
+
+        for (int num : numeros) {
+            int i, j, eleito;
+            for (i = 1; i < numeros.length; i++) {
+                eleito = numeros[i];
+                j = i;
+                while ((j > 0) && (numeros[j - 1] > eleito)) {
+                    numeros[j] = numeros[j - 1];
+                    j = j - 1;
+                }
+                numeros[j] = eleito;
+            }
+        } 
+        return numeros;
     }
     
     
