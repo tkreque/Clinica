@@ -64,8 +64,9 @@ public class PacienteDAOListaEncadeada implements PacienteDAO {
             lista = arquivo.readObject();
             for(int i=0;i<lista.size();i++){
                 pacientes.append(lista.get(i));
+                pacientes = ordenacao();
             }
-            arquivo.close();
+            arquivo.close();            
         }catch(Exception ex){
             throw new RuntimeException("Não foi possível carregar os dados: "+ex);
         }
@@ -81,32 +82,29 @@ public class PacienteDAOListaEncadeada implements PacienteDAO {
         return s;
     }
     
-    public int[] ordenacao(){
-        int[] numeros = new int[7];
+    public ListaEncadeada<Paciente> ordenacao(){
+        ListaEncadeada<Paciente> pacientesNew = new ListaEncadeada<>();
 
-        numeros[0] = 9;
-        numeros[1] = 5;
-        numeros[2] = 4;
-        numeros[3] = 2;
-        numeros[4] = 1;
-        numeros[5] = 8;
-        numeros[6] = 3;
-
-        for (int num : numeros) {
-            int i, j, eleito;
-            for (i = 1; i < numeros.length; i++) {
-                eleito = numeros[i];
-                j = i;
-                while ((j > 0) && (numeros[j - 1] > eleito)) {
-                    numeros[j] = numeros[j - 1];
-                    j = j - 1;
+        for (Paciente p : pacientes) {
+            Iterador<Paciente> eleito = pacientes.iterator();
+            Paciente aux;
+            
+            while(eleito.hasNext()){
+                int resu = p.compareTo(eleito.next());
+                if (resu == 1){
+                    aux = eleito.next();
+                    pacientesNew.append(aux);
+                    pacientesNew.prepend(p);
+                }else{
+                    if(resu == -1){
+                        aux = p;
+                        pacientesNew.append(aux);
+                        pacientesNew.prepend(eleito.next());
+                    }
                 }
-                numeros[j] = eleito;
+                eleito.next();
             }
-        } 
-        return numeros;
+        }
+        return pacientesNew;
     }
-    
-    
-
 }
